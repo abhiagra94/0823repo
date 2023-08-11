@@ -1,0 +1,114 @@
+{
+	"name": "CopythroughParameter",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "eduellipsestorageBlob",
+						"type": "DatasetReference",
+						"parameters": {
+							"outputstoragename": {
+								"value": "@pipeline().parameters.Datalakepath",
+								"type": "Expression"
+							},
+							"outputfilename": {
+								"value": "@pipeline().parameters.Datalakefile",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Blobsink",
+						"type": "DatasetReference",
+						"parameters": {
+							"datalakesink": {
+								"value": "@pipeline().parameters.outputstoragename",
+								"type": "Expression"
+							},
+							"datalakefilename": {
+								"value": "@pipeline().parameters.outputfilename",
+								"type": "Expression"
+							},
+							"subfolder": {
+								"value": "@pipeline().parameters.subfolder",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"Datalakepath": {
+				"type": "string",
+				"defaultValue": "input"
+			},
+			"Datalakefile": {
+				"type": "string",
+				"defaultValue": "Employee.csv"
+			},
+			"outputstoragename": {
+				"type": "string",
+				"defaultValue": "output"
+			},
+			"outputfilename": {
+				"type": "string",
+				"defaultValue": "Employeeout.csv"
+			},
+			"subfolder": {
+				"type": "string",
+				"defaultValue": "folder/xyz"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-08-04T14:45:42Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

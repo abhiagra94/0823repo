@@ -1,0 +1,11 @@
+{
+	"name": "eduellipse_LS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://eduellipse.vault.azure.net/"
+		}
+	}
+}

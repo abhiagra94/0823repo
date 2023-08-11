@@ -1,0 +1,38 @@
+{
+	"name": "eduellipsestorageBlob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "eduellipsestorageblob",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"outputstoragename": {
+				"type": "string"
+			},
+			"outputfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().outputfilename",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().outputstoragename",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

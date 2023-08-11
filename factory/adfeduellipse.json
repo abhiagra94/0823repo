@@ -1,0 +1,9 @@
+{
+	"name": "adfeduellipse",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cc13939b-38f3-4348-979b-974d212a9d61",
+		"tenantId": "b7dd2c3c-6be3-4dad-afa6-1214a2ddd2c4"
+	}
+}
