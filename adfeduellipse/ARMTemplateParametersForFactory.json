@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfeduellipse"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=cloud729.database.windows.net;Initial Catalog=cloud12345;User ID=Cloud"
+		},
+		"eduellipsestorageblob_connectionString": {
+			"value": ""
+		},
+		"gen2datalakegen2test1343_accountKey": {
+			"value": ""
+		},
+		"eduellipse_LS_properties_typeProperties_baseUrl": {
+			"value": "https://eduellipse.vault.azure.net/"
+		},
+		"gen2datalakegen2test1343_properties_typeProperties_url": {
+			"value": "https://datalakegen2test1343.dfs.core.windows.net/"
+		}
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfeduellipse"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=cloud729.database.windows.net;Initial Catalog=cloud12345;User ID=Cloud"
+		},
+		"eduellipsestorageblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'eduellipsestorageblob'"
+		},
+		"gen2datalakegen2test1343_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'gen2datalakegen2test1343'"
+		},
+		"eduellipse_LS_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://eduellipse.vault.azure.net/"
+		},
+		"gen2datalakegen2test1343_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakegen2test1343.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfeduellipse_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"eduellipsestorageblob_connectionString": {
+						"value": "[parameters('eduellipsestorageblob_connectionString')]"
+					},
+					"gen2datalakegen2test1343_accountKey": {
+						"value": "[parameters('gen2datalakegen2test1343_accountKey')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"eduellipse_LS_properties_typeProperties_baseUrl": {
+						"value": "[parameters('eduellipse_LS_properties_typeProperties_baseUrl')]"
+					},
+					"gen2datalakegen2test1343_properties_typeProperties_url": {
+						"value": "[parameters('gen2datalakegen2test1343_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adfeduellipse_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfeduellipse_ArmTemplate_0')]"
+			]
+		}
+	]
+}
