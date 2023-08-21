@@ -5,16 +5,8 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=cloud729.database.windows.net;Initial Catalog=cloud12345;User ID=Cloud",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "eduellipse_LS",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "password",
-				"secretVersion": "72eabac289224bcfbb887d77ba8d4627"
-			}
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=cloud729.database.windows.net;initial catalog=cloud12345;user id=Cloud",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDgwMDcyNzUyLUJGMTEtNDVENC04REJFLTlDOUY2MDM2NTQ1NF9mYjJhMTE5Yy1mN2U0LTQyNzItOTQ1Zi1hODRhMzVlODYzOGIiDQp9"
 		}
 	}
 }
